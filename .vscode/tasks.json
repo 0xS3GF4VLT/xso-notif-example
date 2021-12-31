@@ -2,25 +2,24 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "cmd.exe",
+                "args": ["/d", "/c"]
+            }
+        }
+    },
     "tasks": [
-        {
-            "label": "Build Win32",
-            "type": "shell",
-            "command": "[IO.File]::WriteAllLines(\\\"./output/win32/xso-notif-test.bat\\\", ('\\\"%CD%\\xso-notif-test.exe\\\" [put acces token here. remove square brackets]'))",
-            "args": [],
-            "dependsOn": ["Run Go Build Win32"]
-        },
         {
             "label": "Run Go Build Win32",
             "type": "shell",
-            "command": "go",
-            "args": ["build", "-o", "./output/win32/xso-notif-test.exe", "./src"]
+            "command": "go build -o ./output/win32/xso-notif-test.exe ./src"
         },
         {
             "label": "Run Win32",
             "type": "shell",
-            "command": "go",
-            "args": ["run", "./src"]
+            "command": "go run./src"
         }
     ]
 }
